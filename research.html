@@ -30,9 +30,18 @@
     }
     .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.02em; }
     .nav-logo span { color: var(--indigo); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links { display: flex; gap: 36px; list-style: none; flex-wrap: nowrap; }
     .nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.2s; }
+    @media (max-width: 700px) {
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: var(--paper); border-bottom: 1px solid var(--border); padding: 16px 24px 24px; gap: 0; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-bottom: 1px solid var(--border); }
+      .nav-links a { display: block; padding: 14px 0; font-size: 0.85rem; }
+      .nav-hamburger { display: flex; }
+    }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.2s; }
     @media (max-width: 700px) {
@@ -302,6 +311,9 @@
 
 <nav>
   <a class="nav-logo" href="index.html">Xuechan <span>(Chan)</span> Dai</a>
+  <button class="nav-hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
   <button class="nav-hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
     <span></span><span></span><span></span>
   </button>

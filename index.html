@@ -56,7 +56,7 @@
       letter-spacing: 0.02em;
     }
     .nav-logo span { color: var(--indigo); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links { display: flex; gap: 36px; list-style: none; flex-wrap: nowrap; }
     .nav-links a {
       font-size: 0.78rem;
       font-weight: 400;
@@ -636,6 +636,9 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html">Xuechan <span>(Chan)</span> Dai</a>
+  <button class="nav-hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
   <button class="nav-hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
     <span></span><span></span><span></span>
   </button>

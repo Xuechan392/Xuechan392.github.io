@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xuechan (Chan) Dai — Linguist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:      #1a1814;
+      --ink-soft: #4a4640;
+      --ink-pale: #8a8680;
+      --paper:    #f7f4ef;
+      --paper-2:  #f0ebe3;
+      --indigo:   #2d4a7a;
+      --indigo-l: #3d5f9a;
+      --indigo-pale: #e8edf5;
+      --gold:     #b8924a;
+      --gold-l:   #d4aa6a;
+      --border:   #ddd8d0;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', sans-serif;
+      --mono:  'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--indigo); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--indigo); }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 60px;
+    }
+    .hero-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 80px 64px 80px 48px;
+    }
+    .hero-right {
+      background: var(--paper-2);
+      display: flex;
+      align-items: center;
+      padding: 80px 48px 80px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,74,122,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .photo-wrap {
+      width: 280px; height: 350px;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 12px 16px 48px rgba(26,24,20,0.14);
+    }
+    .photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 2px;
+    }
+    .photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--indigo-pale) 0%, var(--paper-2) 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px;
+      color: var(--indigo);
+    }
+    .photo-placeholder .icon { font-size: 3rem; opacity: 0.4; }
+    .photo-placeholder p { font-size: 0.75rem; opacity: 0.5; font-family: var(--mono); }
+
+    .hero-text { max-width: 480px; }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px; height: 1px;
+      background: var(--indigo);
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: 3.4rem;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    h1 .name-cn {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--ink-soft);
+      letter-spacing: 0.12em;
+      margin-top: 4px;
+    }
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin: 24px 0 32px;
+      line-height: 1.6;
+    }
+    .hero-tagline strong { font-style: normal; color: var(--ink); font-weight: 500; }
+
+    .interest-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 40px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      background: transparent;
+    }
+    .tag.accent {
+      border-color: var(--indigo);
+      color: var(--indigo);
+      background: var(--indigo-pale);
+    }
+
+    .hero-actions { display: flex; gap: 14px; align-items: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 26px;
+      background: var(--indigo);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--indigo-l); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 24px;
+      border: 1px solid var(--border);
+      color: var(--ink-soft);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--indigo); color: var(--indigo); }
+
+    /* ── SECTION BASE ────────────────────────────────── */
+    section { padding: 72px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 48px;
+    }
+    h2 em { font-style: italic; color: var(--ink-soft); }
+
+    /* ── RESEARCH SECTION ───────────────────────────── */
+    #research { background: var(--paper); }
+
+    .research-main {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .research-card-featured {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 24px rgba(26,24,20,0.06);
+    }
+    .card-header {
+      background: var(--indigo);
+      padding: 28px 32px;
+      color: #fff;
+    }
+    .card-status {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 10px;
+    }
+    .card-header h3 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.25;
+    }
+    .card-header p {
+      font-size: 0.82rem;
+      opacity: 0.75;
+      margin-top: 8px;
+    }
+    .card-body { padding: 28px 32px; }
+    .card-body p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .card-highlight {
+      background: var(--indigo-pale);
+      border-left: 3px solid var(--indigo);
+      padding: 14px 18px;
+      border-radius: 0 2px 2px 0;
+      margin-bottom: 24px;
+    }
+    .card-highlight p {
+      font-size: 0.9rem;
+      color: var(--indigo);
+      margin: 0;
+      font-style: italic;
+    }
+    .tool-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .tool-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 3px 10px;
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--ink-soft);
+    }
+
+    /* Progress rings */
+    .progress-section { margin-top: 32px; }
+    .progress-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+    .progress-stages {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+    .stage:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -12px;
+      top: 22px;
+      font-size: 0.7rem;
+      color: var(--border);
+    }
+    .ring-wrap {
+      position: relative;
+      width: 56px; height: 56px;
+    }
+    .ring-wrap svg {
+      width: 56px; height: 56px;
+      transform: rotate(-90deg);
+    }
+    .ring-bg { fill: none; stroke: var(--border); stroke-width: 3; }
+    .ring-fill {
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    .ring-done .ring-fill { stroke: var(--indigo); }
+    .ring-active .ring-fill { stroke: var(--gold); }
+    .ring-future .ring-fill { stroke: var(--border); }
+    .ring-pct {
+      position: absolute;
+      inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+    }
+    .stage-name {
+      font-size: 0.65rem;
+      text-align: center;
+      line-height: 1.3;
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+    .stage-year {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: var(--ink-pale);
+    }
+
+    /* secondary research cards */
+    .research-secondary { display: flex; flex-direction: column; gap: 20px; }
+    .card-small {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 22px 24px;
+      background: #fff;
+    }
+    .card-small .cs-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-pale);
+      margin-bottom: 8px;
+    }
+    .card-small h4 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .card-small p {
+      font-size: 0.87rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+    .card-small.in-progress {
+      border-style: dashed;
+      background: var(--paper);
+    }
+    .card-small.in-progress .cs-eyebrow { color: var(--gold); }
+
+    /* ── INTERESTS GRID ──────────────────────────────── */
+    #interests { background: var(--paper-2); }
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .interest-item {
+      padding: 36px 32px;
+      background: #fff;
+      transition: background 0.2s;
+    }
+    .interest-item:hover { background: var(--indigo-pale); }
+    .interest-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .interest-item h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .interest-item p {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    /* ── RECENT ACTIVITY ─────────────────────────────── */
+    #activity { background: var(--paper); }
+    .activity-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 64px;
+    }
+    .activity-list { list-style: none; }
+    .activity-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .activity-list li:first-child { border-top: 1px solid var(--border); }
+    .act-year {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--ink-pale);
+      padding-top: 3px;
+      white-space: nowrap;
+    }
+    .act-content h4 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .act-content p {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+    }
+    .act-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      margin-top: 6px;
+    }
+    .act-badge.paper { background: var(--indigo-pale); color: var(--indigo); }
+    .act-badge.teaching { background: #eef6ee; color: #3a6b3a; }
+    .act-badge.talk { background: #fdf3e7; color: #8a5a20; }
+
+    .skills-mini h3 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 28px;
+    }
+    .skill-group { margin-bottom: 28px; }
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-pale);
+      margin-bottom: 10px;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-pill {
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+    }
+    .skill-pill.strong {
+      border-color: var(--indigo);
+      color: var(--indigo);
+      background: var(--indigo-pale);
+    }
+
+    /* ── LATEST NOTES ─────────────────────────────────── */
+    #notes-preview { background: var(--paper-2); }
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .note-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 28px 24px;
+      text-decoration: none;
+      color: var(--ink);
+      display: block;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .note-card:hover {
+      box-shadow: 0 8px 32px rgba(26,24,20,0.1);
+      transform: translateY(-2px);
+    }
+    .note-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .note-card h4 {
+      font-family: var(--serif);
+      font-size: 1.12rem;
+      font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .note-card p {
+      font-size: 0.87rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+    .note-date {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--ink-pale);
+      margin-top: 18px;
+    }
+    .section-footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: rgba(247,244,239,0.6);
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer .footer-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--paper);
+    }
+    footer p { font-size: 0.75rem; margin-top: 4px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 0.75rem;
+      color: rgba(247,244,239,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--paper); }
+
+    /* ── DIVIDER ORNAMENT ────────────────────────────── */
+    .ornament {
+      text-align: center;
+      color: var(--border);
+      font-size: 1.2rem;
+      letter-spacing: 0.4em;
+      margin: -20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { gap: 20px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { justify-content: center; padding: 60px 24px 40px; }
+      .hero-right { padding: 40px 24px 60px; }
+      .research-main { grid-template-columns: 1fr; }
+      .interests-grid { grid-template-columns: 1fr; }
+      .activity-grid { grid-template-columns: 1fr; }
+      .notes-grid { grid-template-columns: 1fr; }
+      section { padding: 64px 24px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">Xuechan <span>(Chan)</span> Dai</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="teaching.html">Teaching</a></li>
+    <li><a href="story.html">My Story</a></li>
+    <li><a href="notes.html">Field Notes</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="photo-wrap">
+      <!-- Replace src with your actual photo path -->
+      <img src="profile.jpg" alt="Xuechan Dai" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Linguistics · UVA · 2025–present</div>
+      <h1>
+        Xuechan Dai
+        <span class="name-cn">戴 雪 婵</span>
+      </h1>
+      <p class="hero-tagline">
+        I study <strong>tonal phonology</strong> and the
+        <strong>syntax–phonology interface</strong>,
+        with a focus on varieties that have long been overlooked—starting
+        with the one I grew up speaking in <em>Guizhou, China</em>.
+      </p>
+      <div class="interest-tags">
+        <span class="tag accent">Tonal Phonology</span>
+        <span class="tag accent">Syntax–Phonology Interface</span>
+        <span class="tag">Guiyang Mandarin</span>
+        <span class="tag">Understudied Varieties</span>
+        <span class="tag">L2 Acquisition</span>
+        <span class="tag">Acoustic Phonetics</span>
+      </div>
+      <div class="hero-actions">
+        <a href="cv.pdf" class="btn-primary">↓ Download CV</a>
+        <a href="research.html" class="btn-ghost">View Research →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH HIGHLIGHT -->
+<section id="research">
+  <div class="section-inner">
+    <div class="section-label">Research</div>
+    <h2>Current <em>& Recent</em> Work</h2>
+
+    <div class="research-main">
+      <!-- Featured project -->
+      <div class="research-card-featured">
+        <div class="card-header">
+          <div class="card-status">● Active · Pilot Study</div>
+          <h3>Tone Sandhi in Guiyang Mandarin</h3>
+          <p>UVA LING 5410 · 2025 · Supervisor: Armik Mirzayan</p>
+        </div>
+        <div class="card-body">
+          <p>
+            An acoustic investigation of citation tones and AA-reduplication
+            sandhi patterns in Guiyang Mandarin, a Southwest Mandarin variety
+            spoken by ~4 million people and largely absent from the phonological
+            literature.
+          </p>
+          <div class="card-highlight">
+            <p>
+              Key finding: sandhi in kinship-term reduplication appears
+              sensitive to semantic context — the same surface form
+              <em>婆婆</em> surfaces with distinct tone patterns depending
+              on whether it denotes 'paternal grandmother' or 'mother-in-law'.
+            </p>
+          </div>
+          <div class="tool-tags">
+            <span class="tool-tag">Praat</span>
+            <span class="tool-tag">Python</span>
+            <span class="tool-tag">parselmouth</span>
+            <span class="tool-tag">T-value method</span>
+            <span class="tool-tag">Acoustic phonetics</span>
+          </div>
+
+          <!-- Progress rings -->
+          <div class="progress-section">
+            <div class="progress-label">Project Roadmap</div>
+            <div class="progress-stages">
+              <div class="stage">
+                <div class="ring-wrap">
+                  <svg viewBox="0 0 56 56">
+                    <circle class="ring-bg" cx="28" cy="28" r="22"/>
+                    <circle class="ring-fill ring-done" cx="28" cy="28" r="22"
+                      stroke-dasharray="138.2"
+                      stroke-dashoffset="0"/>
+                  </svg>
+                  <div class="ring-pct">✓</div>
+                </div>
+                <div class="stage-name">Pilot Study</div>
+                <div class="stage-year">2025</div>
+              </div>
+              <div class="stage">
+                <div class="ring-wrap">
+                  <svg viewBox="0 0 56 56">
+                    <circle class="ring-bg" cx="28" cy="28" r="22"/>
+                    <circle class="ring-fill ring-active" cx="28" cy="28" r="22"
+                      stroke-dasharray="138.2"
+                      stroke-dashoffset="69"/>
+                  </svg>
+                  <div class="ring-pct">50%</div>
+                </div>
+                <div class="stage-name">Data Expansion</div>
+                <div class="stage-year">2026</div>
+              </div>
+              <div class="stage">
+                <div class="ring-wrap">
+                  <svg viewBox="0 0 56 56">
+                    <circle class="ring-bg" cx="28" cy="28" r="22"/>
+                    <circle class="ring-fill ring-future" cx="28" cy="28" r="22"
+                      stroke-dasharray="138.2"
+                      stroke-dashoffset="124"/>
+                  </svg>
+                  <div class="ring-pct">—</div>
+                </div>
+                <div class="stage-name">Theoretical Modeling</div>
+                <div class="stage-year">2026–27</div>
+              </div>
+              <div class="stage">
+                <div class="ring-wrap">
+                  <svg viewBox="0 0 56 56">
+                    <circle class="ring-bg" cx="28" cy="28" r="22"/>
+                    <circle class="ring-fill ring-future" cx="28" cy="28" r="22"
+                      stroke-dasharray="138.2"
+                      stroke-dashoffset="138"/>
+                  </svg>
+                  <div class="ring-pct">—</div>
+                </div>
+                <div class="stage-name">PhD Dissertation</div>
+                <div class="stage-year">TBD</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary cards -->
+      <div class="research-secondary">
+        <div class="card-small">
+          <div class="cs-eyebrow">2021–2022 · University of Michigan</div>
+          <h4>Verb-Object Length Restrictions in Mandarin</h4>
+          <p>Corpus-based study of length constraints in 1+2 VO constructions. RA project under Prof. San Duanmu.</p>
+        </div>
+        <div class="card-small in-progress">
+          <div class="cs-eyebrow">In Progress · Spring 2026 · UVA</div>
+          <h4>L2 Chinese Listening Processing</h4>
+          <p>Directed research investigating how L2 learners process Mandarin speech in real time.</p>
+        </div>
+        <div class="card-small">
+          <div class="cs-eyebrow">Planned · Summer 2026</div>
+          <h4 style="color:var(--ink-pale)">Expanded Fieldwork in Guiyang</h4>
+          <p style="color:var(--ink-pale)">10+ speakers. Extended structural contexts. Theoretical modeling begins.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+<section id="interests">
+  <div class="section-inner">
+    <div class="section-label">Interests</div>
+    <h2>What I <em>Think About</em></h2>
+    <div class="interests-grid">
+      <div class="interest-item">
+        <div class="interest-num">01</div>
+        <h3>Tonal Phonology</h3>
+        <p>How do tones behave in context? What triggers sandhi, and what does that tell us about phonological representation?</p>
+      </div>
+      <div class="interest-item">
+        <div class="interest-num">02</div>
+        <h3>Syntax–Phonology Interface</h3>
+        <p>The boundaries between words, phrases, and clauses shape how sounds are realized. I want to understand exactly how.</p>
+      </div>
+      <div class="interest-item">
+        <div class="interest-num">03</div>
+        <h3>Understudied Varieties</h3>
+        <p>Southwest Mandarin dialects and Guizhou minority languages are rich testing grounds for phonological theory. They deserve more attention.</p>
+      </div>
+      <div class="interest-item">
+        <div class="interest-num">04</div>
+        <h3>Language Acquisition</h3>
+        <p>How do learners parse tonal contrasts in an L2? What does processing difficulty reveal about phonological categories?</p>
+      </div>
+      <div class="interest-item">
+        <div class="interest-num">05</div>
+        <h3>Acoustic Methods</h3>
+        <p>Praat, Python, and the painstaking art of converting continuous F0 into meaningful phonological description.</p>
+      </div>
+      <div class="interest-item">
+        <div class="interest-num">06</div>
+        <h3>Language &amp; Identity</h3>
+        <p>Accent prejudice is real. Linguistics can be a tool for understanding — and challenging — how we judge speakers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENT ACTIVITY + SKILLS -->
+<section id="activity">
+  <div class="section-inner">
+    <div class="activity-grid">
+      <div>
+        <div class="section-label">Activity</div>
+        <h2>Recent <em>Highlights</em></h2>
+        <ul class="activity-list">
+          <li>
+            <span class="act-year">2026</span>
+            <div class="act-content">
+              <h4>L2 Chinese Listening Processing — Directed Research</h4>
+              <p>UVA · Ongoing · Psycholinguistics & processing</p>
+              <span class="act-badge paper">Research</span>
+            </div>
+          </li>
+          <li>
+            <span class="act-year">2025</span>
+            <div class="act-content">
+              <h4>Pilot study: Tone Sandhi in Guiyang Mandarin</h4>
+              <p>UVA LING 5410 Phonology · Supervisor: Armik Mirzayan</p>
+              <span class="act-badge paper">Research</span>
+            </div>
+          </li>
+          <li>
+            <span class="act-year">2025</span>
+            <div class="act-content">
+              <h4>"Topic-Based Instruction in Immersion Chinese Programs"</h4>
+              <p>New England Chinese Language Teachers Association Annual Conference</p>
+              <span class="act-badge talk">Presented</span>
+            </div>
+          </li>
+          <li>
+            <span class="act-year">2025</span>
+            <div class="act-content">
+              <h4>"Language and Cultural Exchange between K-12 Schools and Universities"</h4>
+              <p>VA-CLTA Regional Workshop, UVA</p>
+              <span class="act-badge talk">Presented</span>
+            </div>
+          </li>
+          <li>
+            <span class="act-year">2023</span>
+            <div class="act-content">
+              <h4>"Game Culture in Chinese Language Teaching"</h4>
+              <p>22nd New York International Conference on Teaching Chinese</p>
+              <span class="act-badge talk">Presented</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="skills-mini">
+          <h3>Tools &amp; Methods</h3>
+          <div class="skill-group">
+            <div class="skill-group-label">Research</div>
+            <div class="skill-pills">
+              <span class="skill-pill strong">Praat</span>
+              <span class="skill-pill strong">Python</span>
+              <span class="skill-pill strong">Acoustic Phonetics</span>
+              <span class="skill-pill">R</span>
+              <span class="skill-pill">Corpus Analysis</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Linguistics</div>
+            <div class="skill-pills">
+              <span class="skill-pill strong">Phonology</span>
+              <span class="skill-pill strong">Syntax</span>
+              <span class="skill-pill strong">Psycholinguistics</span>
+              <span class="skill-pill">Historical Linguistics</span>
+              <span class="skill-pill">Typology</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Languages</div>
+            <div class="skill-pills">
+              <span class="skill-pill strong">Mandarin (native)</span>
+              <span class="skill-pill strong">Guiyang dialect (native)</span>
+              <span class="skill-pill">English (fluent)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIELD NOTES PREVIEW -->
+<section id="notes-preview">
+  <div class="section-inner">
+    <div class="section-label">Field Notes</div>
+    <h2>Recent <em>Writing</em></h2>
+    <div class="notes-grid">
+      <a href="notes.html" class="note-card">
+        <div class="note-tag">Phonology · Observation</div>
+        <h4>Why does 婆婆 mean two different things — and why does that matter?</h4>
+        <p>The same word, the same reduplication. But the tones shift differently depending on what you mean. That feels like it shouldn't be possible.</p>
+        <div class="note-date">Coming soon</div>
+      </a>
+      <a href="notes.html" class="note-card">
+        <div class="note-tag">Personal · Language Learning</div>
+        <h4>What a cassette player taught me about linguistics</h4>
+        <p>I spent years trying to erase my accent with a secondhand tape recorder. I didn't realize I was doing fieldwork on myself.</p>
+        <div class="note-date">Coming soon</div>
+      </a>
+      <a href="notes.html" class="note-card">
+        <div class="note-tag">Methods · Python</div>
+        <h4>Converting F0 to five-tone values: what the algorithm gets wrong</h4>
+        <p>T-value methods look clean on paper. In practice, contour tones break everything. Here's what I've learned from the failures.</p>
+        <div class="note-date">Coming soon</div>
+      </a>
+    </div>
+    <div class="section-footer">
+      <a href="notes.html" class="btn-ghost">All Field Notes →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: var(--paper); padding: 80px 48px;">
+  <div class="section-inner" style="max-width: 600px; text-align: center;">
+    <div class="section-label">Contact</div>
+    <h2 style="margin-bottom: 16px;">Get <em>in Touch</em></h2>
+    <p style="color: var(--ink-soft); margin-bottom: 36px; font-size: 0.9rem;">
+      I'm always glad to hear from fellow researchers, prospective collaborators,
+      or anyone curious about tonal phonology and the languages of Guizhou.
+    </p>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <a href="/cdn-cgi/l/email-protection#d6b7a0b3e0a4a09680bfa4b1bfb8bfb7f8b3b2a3" class="btn-primary">✉ <span class="__cf_email__" data-cfemail="1574637023676355437c67727c7b7c743b707160">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#7f070a1a1c171e111b1e163f18121e1613511c1012" class="btn-ghost"><span class="__cf_email__" data-cfemail="2c5459494f444d42484d456c4b414d4540024f4341">[email&#160;protected]</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-name">Xuechan (Chan) Dai</div>
+    <p>MA Student in Linguistics · University of Virgi

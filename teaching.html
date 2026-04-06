@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teaching — Xuechan Dai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1814; --ink-soft: #4a4640; --ink-pale: #8a8680;
+      --paper: #f7f4ef; --paper-2: #f0ebe3;
+      --indigo: #2d4a7a; --indigo-l: #3d5f9a; --indigo-pale: #e8edf5;
+      --gold: #b8924a;
+      --border: #ddd8d0;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,244,239,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--indigo); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+
+    .page-header {
+      padding: 100px 48px 56px;
+      background: var(--paper-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-inner { max-width: 1100px; margin: 0 auto; }
+    .page-eyebrow {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--indigo); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .page-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--indigo); }
+    .page-header h1 { font-family: var(--serif); font-size: 3.2rem; font-weight: 400; line-height: 1.1; margin-bottom: 16px; }
+    .page-header h1 em { font-style: italic; color: var(--ink-soft); }
+    .page-header .lede { font-size: 0.95rem; color: var(--ink-soft); max-width: 600px; line-height: 1.75; }
+
+    .teaching-page { max-width: 1100px; margin: 0 auto; padding: 64px 48px 100px; }
+
+    .sec-label {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--indigo); margin-bottom: 10px;
+    }
+    .sec-title {
+      font-family: var(--serif); font-size: 2rem; font-weight: 400;
+      margin-bottom: 36px; line-height: 1.2;
+    }
+    .sec-title em { font-style: italic; color: var(--ink-soft); }
+
+    /* PHILOSOPHY */
+    .philosophy-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      margin-bottom: 64px; align-items: start;
+    }
+    .philosophy-block p {
+      font-size: 0.95rem; color: var(--ink-soft); line-height: 1.85; margin-bottom: 16px;
+    }
+    .phil-pull {
+      background: var(--indigo);
+      padding: 36px 32px; border-radius: 3px;
+    }
+    .phil-pull p {
+      font-family: var(--serif); font-size: 1.3rem; font-style: italic;
+      color: #fff; line-height: 1.6; margin: 0;
+    }
+
+    /* POSITIONS TABLE */
+    .positions-list { margin-bottom: 64px; }
+    .position-item {
+      display: grid; grid-template-columns: 200px 1fr;
+      gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .position-item:first-child { border-top: 1px solid var(--border); }
+    .pos-meta {}
+    .pos-institution {
+      font-weight: 500; font-size: 0.95rem; margin-bottom: 4px;
+    }
+    .pos-period {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--ink-pale);
+      margin-bottom: 8px;
+    }
+    .pos-badge {
+      display: inline-block; padding: 3px 10px;
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em;
+      text-transform: uppercase; border-radius: 2px;
+    }
+    .pos-badge.university { background: var(--indigo-pale); color: var(--indigo); }
+    .pos-badge.program { background: #eef6ee; color: #3a6b3a; }
+    .pos-badge.nonprofit { background: #fdf3e7; color: #8a5a20; }
+    .pos-badge.online { background: var(--paper-2); color: var(--ink-pale); border: 1px solid var(--border); }
+
+    .pos-detail {}
+    .pos-title {
+      font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+      margin-bottom: 10px; line-height: 1.3;
+    }
+    .pos-desc {
+      font-size: 0.88rem; color: var(--ink-soft); line-height: 1.75;
+    }
+    .pos-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .pos-tag {
+      font-size: 0.72rem; padding: 3px 10px;
+      border: 1px solid var(--border); border-radius: 2px; color: var(--ink-pale);
+    }
+
+    /* EDUCATION */
+    .education-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      margin-bottom: 64px;
+    }
+    .edu-card {
+      border: 1px solid var(--border); border-radius: 3px;
+      padding: 24px; background: #fff;
+    }
+    .edu-card .ec-year {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em;
+      color: var(--ink-pale); margin-bottom: 10px;
+    }
+    .edu-card h4 {
+      font-family: var(--serif); font-size: 1.05rem; font-weight: 500;
+      margin-bottom: 6px; line-height: 1.3;
+    }
+    .edu-card .ec-inst { font-size: 0.82rem; color: var(--indigo); margin-bottom: 8px; }
+    .edu-card p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.65; }
+
+    /* CTA */
+    .research-cta {
+      background: var(--paper-2); border: 1px solid var(--border);
+      border-radius: 3px; padding: 36px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .research-cta h3 {
+      font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .research-cta p { font-size: 0.88rem; color: var(--ink-soft); }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+      padding: 11px 26px; background: var(--indigo); color: #fff;
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.06em; text-decoration: none; border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--indigo-l); }
+
+    footer {
+      background: var(--ink); color: rgba(247,244,239,0.6);
+      padding: 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer .footer-name { font-family: var(--serif); font-size: 1.1rem; color: var(--paper); }
+    footer p { font-size: 0.75rem; margin-top: 4px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.75rem; color: rgba(247,244,239,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--paper); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .page-header, .teaching-page { padding-left: 24px; padding-right: 24px; }
+      .philosophy-block { grid-template-columns: 1fr; }
+      .position-item { grid-template-columns: 1fr; gap: 8px; }
+      .education-grid { grid-template-columns: 1fr; }
+      .research-cta { flex-direction: column; }
+      footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Xuechan <span>(Chan)</span> Dai</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="teaching.html" class="active">Teaching</a></li>
+    <li><a href="story.html">My Story</a></li>
+    <li><a href="notes.html">Field Notes</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Teaching</div>
+    <h1>Teaching <em>Experience</em></h1>
+    <p class="lede">
+      Five years of Chinese language instruction across university, immersion,
+      and online contexts. Teaching has sharpened the questions I now pursue
+      as a researcher — particularly around phonological acquisition and
+      how learners internalize tonal contrasts.
+    </p>
+  </div>
+</div>
+
+<div class="teaching-page">
+
+  <!-- PHILOSOPHY -->
+  <div class="sec-label">Approach</div>
+  <div class="sec-title">Teaching <em>Philosophy</em></div>
+  <div class="philosophy-block">
+    <div>
+      <p>
+        My years in the classroom taught me something I couldn't have learned
+        any other way: the moment a learner produces an unexpected form is not
+        a failure to be corrected and moved past. It is a window into
+        how language works.
+      </p>
+      <p>
+        That conviction now shapes both how I teach and what I research.
+        In the classroom, I try to build environments where students feel
+        safe producing imperfect output — because imperfect output is
+        where learning actually happens. In my research, I pursue the same
+        question from the other direction: what is the underlying system
+        that generates those forms?
+      </p>
+      <p>
+        I have taught Chinese at levels from beginner to advanced, in immersion
+        and non-immersion settings, to heritage learners, L2 learners,
+        and children. Across all of those contexts, the thing that works
+        best is honest attention to how language is actually structured.
+      </p>
+    </div>
+    <div class="phil-pull">
+      <p>
+        "The student's error is not noise.
+        It is data — and sometimes the most interesting data in the room."
+      </p>
+    </div>
+  </div>
+
+  <!-- POSITIONS -->
+  <div class="sec-label">Experience</div>
+  <div class="sec-title">Positions <em>Held</em></div>
+  <div class="positions-list">
+
+    <div class="position-item">
+      <div class="pos-meta">
+        <div class="pos-institution">Williams College</div>
+        <div class="pos-period">Aug 2024 – May 2025</div>
+        <span class="pos-badge university">University</span>
+      </div>
+      <div class="pos-detail">
+        <div class="pos-title">Chinese Language Fellow</div>
+        <div class="pos-desc">
+          Taught Chinese at Levels 1–4, covering phonetics, characters, vocabulary,
+          grammar, and rhetoric. Organized weekly Chinese Table and Chinese Game Night
+          as cultural programming. Worked closely with faculty on curriculum alignment
+          across proficiency levels.
+        </div>
+        <div class="pos-tags">
+          <span class="pos-tag">Levels 1–4</span>
+          <span class="pos-tag">Phonetics</span>
+          <span class="pos-tag">Grammar</span>
+          <span class="pos-tag">Cultural programming</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-meta">
+        <div class="pos-institution">Middlebury College</div>
+        <div class="pos-period">Summer 2024</div>
+        <span class="pos-badge program">Immersion Program</span>
+      </div>
+      <div class="pos-detail">
+        <div class="pos-title">Chinese Instructor — Chinese Immersion Program</div>
+        <div class="pos-desc">
+          Taught Level 2 students in a full-immersion environment.
+          Integrated Chinese cultural content — tea ceremony and traditional seal carving —
+          into language instruction to reinforce vocabulary and cultural context.
+        </div>
+        <div class="pos-tags">
+          <span class="pos-tag">Immersion</span>
+          <span class="pos-tag">Level 2</span>
+          <span class="pos-tag">Culture-integrated instruction</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-meta">
+        <div class="pos-institution">PiPa Magazine</div>
+        <div class="pos-period">Sep 2023 – 2025</div>
+        <span class="pos-badge nonprofit">Non-profit</span>
+      </div>
+      <div class="pos-detail">
+        <div class="pos-title">Chinese Teacher &amp; Curriculum Developer</div>
+        <div class="pos-desc">
+          Small-group Chinese instruction for heritage learners in the US.
+          Co-developed K–12 Chinese language materials: vocabulary grading,
+          difficulty assessment, and text editing for a heritage learner audience.
+        </div>
+        <div class="pos-tags">
+          <span class="pos-tag">Heritage learners</span>
+          <span class="pos-tag">Curriculum design</span>
+          <span class="pos-tag">Vocabulary grading</span>
+          <span class="pos-tag">K–12</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-meta">
+        <div class="pos-institution">ChineseRd Education Technology</div>
+        <div class="pos-period">Mar 2020 – Jan 2024</div>
+        <span class="pos-badge online">Online</span>
+      </div>
+      <div class="pos-detail">
+        <div class="pos-title">Chinese Teacher</div>
+        <div class="pos-desc">
+          Online Chinese instruction to students in Vietnam, Thailand, Hong Kong,
+          the US, and Macau. Developed Mandarin learning materials for
+          Cantonese-speaking children in Hong Kong. Taught HSK preparation courses
+          to Vietnamese learners and K–12 students across Asia and North America.
+        </div>
+        <div class="pos-tags">
+          <span class="pos-tag">HSK preparation</span>
+          <span class="pos-tag">K–12</span>
+          <span class="pos-tag">Multilingual learners</span>
+          <span class="pos-tag">Material development</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="sec-label">Education in Teaching</div>
+  <div class="sec-title">Formal <em>Training</em></div>
+  <div class="education-grid">
+    <div class="edu-card">
+      <div class="ec-year">2021–2025 · Summers</div>
+      <h4>Master of Chinese School</h4>
+      <div class="ec-inst">Middlebury College</div>
+      <p>Teaching Chinese to Speakers of Other Languages. Four consecutive summers of immersion-based teacher training at Middlebury's Chinese School.</p>
+    </div>
+    <div class="edu-card">
+      <div class="ec-year">2021–2022</div>
+      <h4>M.Ed. in Educational Studies</h4>
+      <div class="ec-inst">University of Michigan</div>
+      <p>Specialization in Design and Technologies for Learning across Culture and Context. Engaged with research on language pedagogy and instructional design.</p>
+    </div>
+    <div class="edu-card">
+      <div class="ec-year">2017–2021</div>
+      <h4>B.A. in Teaching Chinese as a Second Language</h4>
+      <div class="ec-inst">Beijing Language and Culture University</div>
+      <p>Foundational training in Chinese linguistics and pedagogy, with coursework in syntax, phonology, and second language acquisition.</p>
+    </div>
+  </div>
+
+  <!-- CTA to research -->
+  <div class="research-cta">
+    <div>
+      <h3>Teaching led me back to research.</h3>
+      <p>Every question I couldn't answer in the classroom is now a question I'm trying to answer at the desk. See what I'm currently working on.</p>
+    </div>
+    <a href="research.html" class="btn-primary">View Research →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>
+    <div class="footer-name">Xuechan (Chan) Dai</div>
+    <p>MA Student in Linguistics · University of Virginia · 2026</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="story.html">My Story</a>
+    <a href="notes.html">Field Notes</a>
+    <a href="cv.pdf">CV</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Story — Xuechan Dai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:      #1a1814;
+      --ink-soft: #4a4640;
+      --ink-pale: #8a8680;
+      --paper:    #f7f4ef;
+      --paper-2:  #f0ebe3;
+      --indigo:   #2d4a7a;
+      --indigo-l: #3d5f9a;
+      --indigo-pale: #e8edf5;
+      --gold:     #b8924a;
+      --border:   #ddd8d0;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', sans-serif;
+      --mono:  'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+      color: var(--ink); text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--indigo); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding-top: 60px;
+      background: var(--paper-2);
+      min-height: 40vh;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '语言';
+      position: absolute;
+      right: -20px; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--serif);
+      font-size: 22rem;
+      font-weight: 300;
+      color: rgba(45,74,122,0.04);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .page-header-inner {
+      max-width: 760px;
+      padding: 64px 48px;
+    }
+    .page-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .page-eyebrow::before {
+      content: ''; display: inline-block;
+      width: 28px; height: 1px; background: var(--indigo);
+    }
+    .page-header h1 {
+      font-family: var(--serif);
+      font-size: 3.8rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .page-header h1 em {
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+    .page-header .lede {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      max-width: 580px;
+    }
+
+    /* STORY BODY */
+    .story-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+    }
+
+    /* Chapter markers */
+    .chapter {
+      margin-bottom: 52px;
+      position: relative;
+    }
+    .chapter-marker {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .chapter-num {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .chapter-title-block {}
+    .chapter-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-pale);
+      margin-bottom: 4px;
+    }
+    .chapter-title {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .story-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+    .story-body p strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .story-body p em {
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      margin: 36px 0;
+      padding: 28px 36px;
+      border-left: 3px solid var(--indigo);
+      background: var(--indigo-pale);
+      border-radius: 0 3px 3px 0;
+    }
+    .pull-quote p {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--indigo);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .pull-quote cite {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--indigo);
+      opacity: 0.65;
+      margin-top: 12px;
+      font-style: normal;
+    }
+
+    /* Timeline inline note */
+    .inline-note {
+      display: inline-block;
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 2px 10px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      margin: 0 2px;
+      vertical-align: middle;
+    }
+
+    .chapter-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 44px 0;
+    }
+
+    /* Closing section */
+    .story-closing {
+      background: var(--indigo);
+      padding: 72px 48px;
+      text-align: center;
+    }
+    .story-closing h2 {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+    .story-closing p {
+      color: rgba(247,244,239,0.7);
+      font-size: 0.92rem;
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+    .btn-light {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 26px;
+      background: transparent;
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-light:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+
+    footer {
+      background: var(--ink);
+      color: rgba(247,244,239,0.6);
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer .footer-name { font-family: var(--serif); font-size: 1.1rem; color: var(--paper); }
+    footer p { font-size: 0.75rem; margin-top: 4px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.75rem; color: rgba(247,244,239,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--paper); }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      .page-header-inner, .story-body { padding-left: 24px; padding-right: 24px; }
+      .page-header h1 { font-size: 2.6rem; }
+      footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Xuechan <span>(Chan)</span> Dai</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="teaching.html">Teaching</a></li>
+    <li><a href="story.html" class="active">My Story</a></li>
+    <li><a href="notes.html">Field Notes</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Personal History</div>
+    <h1>The Story Between<br><em>Me and Linguistics</em></h1>
+    <p class="lede">
+      From a secondhand cassette player in Guizhou to a phonology lab at UVA —
+      this is how a fear of my own voice became the thing I study.
+    </p>
+  </div>
+</div>
+
+<div class="story-body">
+
+  <!-- Chapter 1 -->
+  <div class="chapter">
+    <div class="chapter-marker">
+      <div class="chapter-num">I</div>
+      <div class="chapter-title-block">
+        <div class="chapter-label">Guizhou · Childhood</div>
+        <div class="chapter-title">The Hierarchy of Accents</div>
+      </div>
+    </div>
+
+    <p>
+      I grew up in <strong>Guiyang, the capital of Guizhou Province</strong> — a place most people
+      outside of China know little about, except perhaps that it is one of the country's
+      poorest provinces. Guizhou is also one of its most linguistically diverse: home to
+      over 33 ethnic minorities and at least 12 distinct minority languages, it is a place
+      where the sounds of human language are unusually varied.
+    </p>
+    <p>
+      I didn't know any of that growing up. What I knew was a simpler, crueler geography:
+      <strong>accents had a hierarchy</strong>. People from the countryside were mocked by people from
+      county towns; county town accents were mocked by city speakers; Guizhou accents in
+      general were dismissed by people from other provinces as sounding like
+      <em>"tǔ dòu wèi"</em> — literally, "tasting of potatoes." Raw. Rural. Not quite right.
+    </p>
+    <p>
+      I internalized this hierarchy early. I became intensely aware of how I sounded —
+      and deeply anxious about it. I wanted to speak in a way that nobody could mock.
+    </p>
+  </div>
+
+  <hr class="chapter-divider" />
+
+  <!-- Chapter 2 -->
+  <div class="chapter">
+    <div class="chapter-marker">
+      <div class="chapter-num">II</div>
+      <div class="chapter-title-block">
+        <div class="chapter-label">Elementary School · A Turning Point</div>
+        <div class="chapter-title">The Cassette Player</div>
+      </div>
+    </div>
+
+    <p>
+      My solution, at around age ten, was a <strong>secondhand cassette player</strong> and a set of
+      <em>New Concept English</em> tapes. I would sit in our small apartment, rewind the tape,
+      listen to a sentence, and repeat it — trying to match the speaker sound by sound,
+      syllable by syllable. Then rewind. Repeat. Again.
+    </p>
+    <p>
+      What I was actually doing, though I had no name for it then, was <strong>training myself
+      to hear fine phonetic distinctions</strong>. I was developing an ear for the difference
+      between what a sound <em>was</em> and what it <em>should be</em>. I was, without knowing it,
+      doing informal acoustic phonetics on myself.
+    </p>
+    <p>
+      In sixth grade, this obsession led me somewhere unexpected: I <strong>represented Guizhou
+      in the national "Hope Star" English speech competition</strong> and placed seventh in
+      the country. For a kid from one of China's poorest provinces, in a competition
+      dominated by students from Beijing and Shanghai, this felt impossible.
+    </p>
+    <p>
+      It also felt like a signal — though I couldn't have articulated it at the time —
+      that paying close attention to sound was something I was genuinely good at.
+    </p>
+  </div>
+
+  <hr class="chapter-divider" />
+
+  <!-- Chapter 3 -->
+  <div class="chapter">
+    <div class="chapter-marker">
+      <div class="chapter-num">III</div>
+      <div class="chapter-title-block">
+        <div class="chapter-label">BLCU · 2017–2021</div>
+        <div class="chapter-title">The Syntax Tree Moment</div>
+      </div>
+    </div>
+
+    <p>
+      I studied <em>Teaching Chinese as a Second Language</em> at Beijing Language and Culture
+      University — not because it was my first choice, but because China's universities
+      didn't yet offer standalone linguistics degrees. I wanted to work with language.
+      I just hadn't found the right frame for it yet.
+    </p>
+    <p>
+      That frame arrived in my third year, unexpectedly, when I wandered into a
+      <strong>syntax course taught by Professor Sī Fùzhēn</strong>. She drew a sentence on the board
+      and began to break it into a tree.
+    </p>
+
+    <div class="pull-quote">
+      <p>
+        I had never seen anything like it. Here was language — something I had always felt
+        but never been able to hold still — rendered as a structure. A system with rules
+        that could be drawn, tested, argued over. I remember thinking: <em>this is what
+        I've been looking for.</em>
+      </p>
+    </div>
+
+    <p>
+      I decided to apply for a linguistics master's program. I studied hard.
+      My <strong>subject score ranked first</strong> among all applicants.
+      Then the politics exam results came back: I had failed by two points.
+    </p>
+    <p>
+      I was devastated. It is hard to describe how it feels to watch a door you worked
+      toward close on you because of a subject that has nothing to do with what you love.
+      But it also, eventually, pushed me toward a different path — one that would take me
+      much further than I had imagined.
+    </p>
+  </div>
+
+  <hr class="chapter-divider" />
+
+  <!-- Chapter 4 -->
+  <div class="chapter">
+    <div class="chapter-marker">
+      <div class="chapter-num">IV</div>
+      <div class="chapter-title-block">
+        <div class="chapter-label">University of Michigan · 2021–2022</div>
+        <div class="chapter-title">Learning to Exist in English</div>
+      </div>
+    </div>
+
+    <p>
+      I arrived in Ann Arbor in the fall of 2021 for an M.Ed. in Educational Studies —
+      the closest path available to me at the time. And I promptly fell apart.
+    </p>
+    <p>
+      I could not <strong>order food at a restaurant</strong>. I could not speak in class.
+      I was afraid to go to the pharmacy when I was sick. For more than six months,
+      I barely left my apartment except to attend lectures — where I sat in silence,
+      convinced that the moment I opened my mouth, the gap between who I sounded like
+      and who I was trying to be would be painfully obvious to everyone.
+    </p>
+    <p>
+      The anxiety I had developed as a child — about the Guizhou accent, about not sounding
+      right — had followed me across the Pacific and attached itself to English.
+    </p>
+    <p>
+      What changed things was a research assistantship. I emailed <strong>Professor San Duanmu</strong>
+      on a long shot, asking if he needed help. He said yes. We worked on
+      verb-object length restrictions in Mandarin — a corpus study, counting characters
+      and running statistics. It was small work. But it put me in a room with someone
+      who talked about language the way I had always hoped someone would.
+    </p>
+
+    <div class="pull-quote">
+      <p>
+        "No language is more 'advanced' than another. A linguist would never dismiss a
+        variety because of where it comes from. Even native speakers make speech errors —
+        and those errors aren't failures. They're data."
+      </p>
+      <cite>— Prof. San Duanmu, University of Michigan</cite>
+    </div>
+
+    <p>
+      These words did something to me that I'm still untangling. They weren't just
+      a statement about linguistics. They were a statement about <em>me</em> —
+      about the Guiyang accent I had spent my life trying to sand down.
+      What if the "potato taste" wasn't a defect? What if it was a data point?
+    </p>
+  </div>
+
+  <hr class="chapter-divider" />
+
+  <!-- Chapter 5 -->
+  <div class="chapter">
+    <div class="chapter-marker">
+      <div class="chapter-num">V</div>
+      <div class="chapter-title-block">
+        <div class="chapter-label">Williams College & UVA · 2024–present</div>
+        <div class="chapter-title">From Teaching to Research — Again</div>
+      </div>
+    </div>
+
+    <p>
+      For several years, I put research aside and became a teacher — at Middlebury,
+      at Williams College as a Language Fellow, through PiPa Magazine.
+      I love teaching. I'm good at it. But sitting with a textbook in front of a class,
+      I kept stopping at the same question: <em>why does this sentence work this way?
+      What is happening, structurally, when a learner's brain produces that error?</em>
+    </p>
+    <p>
+      Teaching was not answering those questions. It was raising them, repeatedly,
+      and then moving on.
+    </p>
+    <p>
+      So I enrolled in a third master's program — this time in linguistics, at UVA.
+      I know that three master's degrees is an unusual path.
+      The simplest way I can explain it: I needed to be certain.
+      Certain that I actually wanted to do research, not just think about it.
+      Certain that I could.
+    </p>
+    <p>
+      In the fall of 2025, in a phonology course, I chose to study <strong>the variety I grew
+      up speaking</strong>. For the first time in my academic life, my own voice was the object
+      of study rather than an obstacle to overcome.
+    </p>
+    <p>
+      Guiyang Mandarin turned out to be more interesting than I had expected.
+      The tone sandhi patterns are unusual. One of the kinship terms I studied —
+      <em>婆婆</em> — surfaces with a <em>different sandhi pattern</em> depending on whether
+      it means "paternal grandmother" or "mother-in-law." The same form. The same
+      structure. But the phonology tracks the semantics.
+    </p>
+    <p>
+      I don't fully understand it yet. That's why I'm going back.
+    </p>
+  </div>
+
+  <hr class="chapter-divider" />
+
+  <!-- Chapter 6 — Coda -->
+  <div class="chapter" style="margin-bottom: 0;">
+    <div class="chapter-marker">
+      <div class="chapter-num">VI</div>
+      <div class="chapter-title-block">
+        <div class="chapter-label">Coda</div>
+        <div class="chapter-title">What I Want to Do With All of This</div>
+      </div>
+    </div>
+
+    <p>
+      I am a first-generation college student. The first person in my family to study
+      abroad. My parents have never been to a university. When they visited Beijing once,
+      people could hear where they were from the moment they spoke —
+      and they were treated accordingly.
+    </p>
+    <p>
+      I want to be a researcher and a teacher. But I also want to be the kind of person
+      who can look a student in the eye and tell them, with real evidence:
+      <strong>your accent is not a flaw in your reasoning. Your dialect is not a sign of
+      limited intelligence. The variety you grew up with is linguistically as interesting
+      as any other — and quite possibly more interesting, because fewer people have
+      bothered to look at it carefully.</strong>
+    </p>
+    <p>
+      Guizhou has 33 ethnic minorities. It has a dozen languages that interact with
+      Mandarin in ways we don't yet understand. It has a Mandarin variety with tone
+      sandhi patterns that appear sensitive to semantics in ways that most theories
+      haven't accounted for.
+    </p>
+    <p>
+      I grew up there. I know what it sounds like from the inside.
+      That's not a limitation. That's a research agenda.
+    </p>
+  </div>
+
+</div><!-- /story-body -->
+
+<!-- CLOSING CTA -->
+<div class="story-closing">
+  <h2>Curious about the research?</h2>
+  <p>
+    The Guiyang Mandarin tone sandhi project is ongoing.
+    You can read about the methodology, findings, and next steps on the Research page.
+  </p>
+  <a href="research.html" class="btn-light">View Research →</a>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-name">Xuechan (Chan) Dai</div>
+    <p>MA Student in Linguistics · University of Virginia · 2026</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="story.html">My Story</a>
+    <a href="notes.html">Field Notes</a>
+    <a href="cv.pdf">CV</a>
+  </div>
+</footer>
+
+</body>
+</html>

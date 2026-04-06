@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Field Notes — Xuechan Dai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1814; --ink-soft: #4a4640; --ink-pale: #8a8680;
+      --paper: #f7f4ef; --paper-2: #f0ebe3;
+      --indigo: #2d4a7a; --indigo-l: #3d5f9a; --indigo-pale: #e8edf5;
+      --gold: #b8924a; --gold-pale: #fdf3e7;
+      --border: #ddd8d0;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,244,239,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--indigo); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+
+    .page-header {
+      padding: 96px 48px 48px;
+      background: var(--paper-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-inner { max-width: 1100px; margin: 0 auto; }
+    .page-eyebrow {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--indigo); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .page-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--indigo); }
+    .page-header h1 { font-family: var(--serif); font-size: 3.2rem; font-weight: 400; line-height: 1.1; margin-bottom: 16px; }
+    .page-header h1 em { font-style: italic; color: var(--ink-soft); }
+    .page-header .lede { font-size: 0.92rem; color: var(--ink-soft); max-width: 560px; }
+
+    /* FILTER TABS */
+    .filter-bar {
+      max-width: 1100px; margin: 0 auto;
+      padding: 32px 48px 0;
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; border: 1px solid var(--border);
+      border-radius: 20px; background: transparent; color: var(--ink-soft);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--indigo); color: var(--indigo); }
+    .filter-btn.active { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+
+    /* NOTES GRID */
+    .notes-section { max-width: 1100px; margin: 0 auto; padding: 28px 48px 72px; }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* Featured note (spans 2 cols) */
+    .note-card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: #fff;
+      padding: 32px 28px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .note-card:hover { box-shadow: 0 8px 32px rgba(26,24,20,0.09); transform: translateY(-2px); }
+    .note-card.featured { grid-column: span 2; background: var(--indigo); color: #fff; border-color: var(--indigo); }
+    .note-card.coming-soon { opacity: 0.55; pointer-events: none; }
+
+    .note-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .note-cat {
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .note-card:not(.featured) .note-cat { color: var(--gold); }
+    .note-card.featured .note-cat { color: rgba(247,244,239,0.6); }
+    .note-date {
+      font-family: var(--mono); font-size: 0.6rem; color: var(--ink-pale);
+    }
+    .note-card.featured .note-date { color: rgba(247,244,239,0.5); }
+
+    .note-card h2 {
+      font-family: var(--serif); font-weight: 500; line-height: 1.3; margin-bottom: 14px;
+    }
+    .note-card:not(.featured) h2 { font-size: 1.25rem; }
+    .note-card.featured h2 { font-size: 1.75rem; color: #fff; }
+
+    .note-card p {
+      font-size: 0.92rem; line-height: 1.7; flex: 1;
+    }
+    .note-card:not(.featured) p { color: var(--ink-soft); }
+    .note-card.featured p { color: rgba(247,244,239,0.75); }
+
+    .note-footer {
+      margin-top: 24px; padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .note-card.featured .note-footer { border-top-color: rgba(247,244,239,0.2); }
+    .read-time {
+      font-family: var(--mono); font-size: 0.62rem; color: var(--ink-pale);
+    }
+    .note-card.featured .read-time { color: rgba(247,244,239,0.5); }
+    .read-link {
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--indigo); text-decoration: none;
+    }
+    .note-card.featured .read-link { color: rgba(247,244,239,0.8); }
+    .cs-badge {
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 3px 9px;
+      background: var(--paper-2); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--ink-pale);
+    }
+
+    /* ABOUT SECTION */
+    .about-notes {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 48px 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .about-notes h3 {
+      font-family: var(--serif); font-size: 1.8rem; font-weight: 400;
+      margin-bottom: 16px;
+    }
+    .about-notes p { font-size: 0.93rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 12px; }
+    .topic-list { list-style: none; }
+    .topic-list li {
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: 0.9rem; color: var(--ink-soft);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .topic-list li::before { content: '◦'; color: var(--indigo); }
+
+    footer {
+      background: var(--ink); color: rgba(247,244,239,0.6);
+      padding: 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer .footer-name { font-family: var(--serif); font-size: 1.1rem; color: var(--paper); }
+    footer p { font-size: 0.75rem; margin-top: 4px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.75rem; color: rgba(247,244,239,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--paper); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .page-header, .filter-bar, .notes-section, .about-notes { padding-left: 24px; padding-right: 24px; }
+      .notes-grid { grid-template-columns: 1fr; }
+      .note-card.featured { grid-column: span 1; }
+      .about-notes { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Xuechan <span>(Chan)</span> Dai</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="teaching.html">Teaching</a></li>
+    <li><a href="story.html">My Story</a></li>
+    <li><a href="notes.html" class="active">Field Notes</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Writing</div>
+    <h1>Field <em>Notes</em></h1>
+    <p class="lede">
+      Observations, half-formed ideas, and occasional explanations of things I find
+      genuinely strange about language — written for anyone curious enough to read them.
+    </p>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active">All</button>
+  <button class="filter-btn">Phonology</button>
+  <button class="filter-btn">Methods</button>
+  <button class="filter-btn">Language & Identity</button>
+  <button class="filter-btn">Personal</button>
+  <button class="filter-btn">Classroom</button>
+</div>
+
+<div class="notes-section">
+  <div class="notes-grid">
+
+    <!-- Featured -->
+    <div class="note-card featured">
+      <div class="note-meta">
+        <span class="note-cat">Phonology · Key Finding</span>
+        <span class="note-date">Coming soon</span>
+      </div>
+      <h2>Why does 婆婆 mean two different things — and why does that matter for phonology?</h2>
+      <p>
+        The same word. The same syllable repeated twice. But the tones shift differently
+        depending on whether you mean "paternal grandmother" or "mother-in-law."
+        That feels like it shouldn't be possible — and it might tell us something
+        important about how phonology and meaning interact.
+      </p>
+      <div class="note-footer">
+        <span class="read-time">~8 min read</span>
+        <span class="cs-badge" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:rgba(247,244,239,0.5);">Coming Soon</span>
+      </div>
+    </div>
+
+    <!-- Regular cards -->
+    <div class="note-card coming-soon">
+      <div class="note-meta">
+        <span class="note-cat">Personal</span>
+        <span class="note-date">Coming soon</span>
+      </div>
+      <h2>What a cassette player taught me about linguistics</h2>
+      <p>
+        I spent years trying to erase my accent with a secondhand tape recorder.
+        I didn't realize I was doing fieldwork on myself.
+      </p>
+      <div class="note-footer">
+        <span class="read-time">~6 min read</span>
+        <span class="cs-badge">Coming Soon</span>
+      </div>
+    </div>
+
+    <div class="note-card coming-soon">
+      <div class="note-meta">
+        <span class="note-cat">Methods · Python</span>
+        <span class="note-date">Coming soon</span>
+      </div>
+      <h2>Converting F0 to five-tone values: what the algorithm gets wrong</h2>
+      <p>
+        T-value methods look clean on paper. In practice, contour tones break everything.
+        Here's what I've learned from the failures.
+      </p>
+      <div class="note-footer">
+        <span class="read-time">~10 min read</span>
+        <span class="cs-badge">Coming Soon</span>
+      </div>
+    </div>
+
+    <div class="note-card coming-soon">
+      <div class="note-meta">
+        <span class="note-cat">Language & Identity</span>
+        <span class="note-date">Coming soon</span>
+      </div>
+      <h2>The "potato taste": on accent prejudice and what linguistics can do about it</h2>
+      <p>
+        In China, accents from Guizhou are sometimes dismissed as sounding like
+        <em>tǔ dòu wèi</em> — raw, rural, not quite right. I grew up with that label.
+        Here's why I think linguistics has something useful to say in response.
+      </p>
+      <div class="note-footer">
+        <span class="read-time">~7 min read</span>
+        <span class="cs-badge">Coming Soon</span>
+      </div>
+    </div>
+
+    <div class="note-card coming-soon">
+      <div class="note-meta">
+        <span class="note-cat">Phonology</span>
+        <span class="note-date">Coming soon</span>
+      </div>
+      <h2>What are tones, actually? A non-technical introduction</h2>
+      <p>
+        Mandarin has four tones. But what does that mean phonologically?
+        And why do they change when words appear together?
+        A short explainer for the curious non-linguist.
+      </p>
+      <div class="note-footer">
+        <span class="read-time">~5 min read</span>
+        <span class="cs-badge">Coming Soon</span>
+      </div>
+    </div>
+
+    <div class="note-card coming-soon">
+      <div class="note-meta">
+        <span class="note-cat">Classroom</span>
+        <span class="note-date">Coming soon</span>
+      </div>
+      <h2>Teaching Chinese when you're still learning it yourself</h2>
+      <p>
+        Becoming a better researcher made me a better teacher — but not in
+        the way I expected. Some thoughts from the transition.
+      </p>
+      <div class="note-footer">
+        <span class="read-time">~6 min read</span>
+        <span class="cs-badge">Coming Soon</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABOUT THIS SECTION -->
+<div class="about-notes">
+  <div>
+    <h3>What are Field Notes?</h3>
+    <p>
+      This is not a formal blog. It's a space for thinking out loud — observations
+      from coursework, ideas that don't fit in a paper, and occasional attempts to
+      explain phonology to non-linguists without losing the interesting parts.
+    </p>
+    <p>
+      Some posts will be technical. Some will be personal.
+      All of them are things I actually find interesting.
+    </p>
+  </div>
+  <div>
+    <p style="font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 12px;">Topics I plan to cover</p>
+    <ul class="topic-list">
+      <li>Tone sandhi in Guiyang Mandarin — findings as they develop</li>
+      <li>Acoustic methods: Praat, Python, and what breaks</li>
+      <li>Southwest Mandarin dialects and why they matter</li>
+      <li>Language, accent, and social judgment</li>
+      <li>Being a first-generation researcher in linguistics</li>
+      <li>L2 Chinese acquisition — things teachers notice</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-name">Xuechan (Chan) Dai</div>
+    <p>MA Student in Linguistics · University of Virginia · 2026</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="story.html">My Story</a>
+    <a href="notes.html">Field Notes</a>
+    <a href="cv.pdf">CV</a>
+  </div>
+</footer>
+
+<script>
+  // Filter buttons interaction
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

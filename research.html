@@ -33,6 +33,15 @@
     .nav-links { display: flex; gap: 36px; list-style: none; }
     .nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.2s; }
+    @media (max-width: 700px) {
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: var(--paper); border-bottom: 1px solid var(--border); padding: 16px 24px 24px; gap: 0; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-bottom: 1px solid var(--border); }
+      .nav-links a { display: block; padding: 14px 0; font-size: 0.85rem; }
+      .nav-hamburger { display: flex; }
+    }
 
     /* PAGE HEADER */
     .page-header {
@@ -293,6 +302,9 @@
 
 <nav>
   <a class="nav-logo" href="index.html">Xuechan <span>(Chan)</span> Dai</a>
+  <button class="nav-hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="research.html" class="active">Research</a></li>
@@ -594,14 +606,14 @@
 <footer>
   <div>
     <div class="footer-name">Xuechan (Chan) Dai</div>
-    <p>MA Student in Linguistics · University of Virginia · 2026</p>
+    <p>MA in Linguistics · University of Virginia</p>
   </div>
   <div class="footer-links">
     <a href="index.html">Home</a>
     <a href="research.html">Research</a>
     <a href="story.html">My Story</a>
     <a href="notes.html">Field Notes</a>
-    <a href="cv.pdf">CV</a>
+    <a href="CV_Xuechan_Dai.pdf">CV</a>
   </div>
 </footer>
 

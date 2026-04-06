@@ -619,6 +619,7 @@
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
       .nav-links { gap: 20px; }
+      .nav-hamburger { display: flex; }
       .hero { grid-template-columns: 1fr; }
       .hero-left { justify-content: center; padding: 60px 24px 40px; }
       .hero-right { padding: 40px 24px 60px; }
@@ -974,9 +975,15 @@
       or anyone curious about tonal phonology and the languages of Guizhou.
     </p>
     <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-      <p style="font-size:0.95rem; color:var(--ink-soft);">✉ ave6rv [at] virginia.edu</p>
-      <p style="font-size:0.95rem; color:var(--ink-soft);">✉ xuechandai [at] gmail.com</p>
+      <a id="email1" class="btn-primary">✉ ave6rv@virginia.edu</a>
+      <a id="email2" class="btn-ghost">xuechandai@gmail.com</a>
     </div>
+    <script>
+      var e1 = "ave6rv"; var e2 = "virginia.edu";
+      var e3 = "xuechandai"; var e4 = "gmail.com";
+      document.getElementById("email1").href = "mailto:" + e1 + "@" + e2;
+      document.getElementById("email2").href = "mailto:" + e3 + "@" + e4;
+    </script>
   </div>
 </section>
 

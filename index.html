@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Xuechan (Chan) Dai — Linguist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     :root {
       --ink:      #1a1814;
@@ -20,7 +20,7 @@
       --gold-l:   #d4aa6a;
       --border:   #ddd8d0;
       --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans:  'DM Sans', sans-serif;
+      --sans:  'Inter', sans-serif;
       --mono:  'DM Mono', monospace;
     }
 
@@ -32,7 +32,8 @@
       font-family: var(--sans);
       background: var(--paper);
       color: var(--ink);
-      font-size: 17px;
+      font-size: 21px;
+      font-weight: 400;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
@@ -70,24 +71,26 @@
 
     /* ── HERO ────────────────────────────────────────── */
     .hero {
-      min-height: 100vh;
+      min-height: auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 380px 1fr;
       padding-top: 60px;
+      width: 100%;
     }
     .hero-left {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      padding: 80px 64px 80px 48px;
+      padding: 40px 20px 40px 32px;
     }
     .hero-right {
       background: var(--paper-2);
       display: flex;
       align-items: center;
-      padding: 80px 48px 80px 64px;
+      padding: 36px 40px 36px 36px;
       position: relative;
       overflow: hidden;
+      min-height: 0;
     }
     .hero-right::before {
       content: '';
@@ -100,7 +103,7 @@
     }
 
     .photo-wrap {
-      width: 280px; height: 350px;
+      width: 260px; height: 330px;
       border-radius: 2px;
       overflow: hidden;
       position: relative;
@@ -129,7 +132,7 @@
     .photo-placeholder .icon { font-size: 3rem; opacity: 0.4; }
     .photo-placeholder p { font-size: 0.75rem; opacity: 0.5; font-family: var(--mono); }
 
-    .hero-text { max-width: 480px; }
+    .hero-text { max-width: 580px; }
     .hero-eyebrow {
       font-family: var(--mono);
       font-size: 0.7rem;
@@ -163,7 +166,7 @@
     }
     .hero-tagline {
       font-family: var(--serif);
-      font-size: 1.15rem;
+      font-size: 1.5rem;
       font-style: italic;
       color: var(--ink-soft);
       margin: 24px 0 32px;
@@ -222,7 +225,7 @@
     .btn-ghost:hover { border-color: var(--indigo); color: var(--indigo); }
 
     /* ── SECTION BASE ────────────────────────────────── */
-    section { padding: 72px 48px; }
+    section { padding: 52px 48px; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-label {
       font-family: var(--mono);
@@ -234,10 +237,10 @@
     }
     h2 {
       font-family: var(--serif);
-      font-size: 2.6rem;
+      font-size: 2.9rem;
       font-weight: 400;
       line-height: 1.15;
-      margin-bottom: 48px;
+      margin-bottom: 32px;
     }
     h2 em { font-style: italic; color: var(--ink-soft); }
 
@@ -697,7 +700,7 @@
       <div class="hero-eyebrow">Linguistics · UVA · 2025–present</div>
       <h1>
         Xuechan Dai
-        <span class="name-cn">戴 雪 婵</span>
+        <span class="name-cn" style="font-weight:600;">戴 雪 婵</span>
       </h1>
       <p class="hero-tagline">
         I study <strong>tonal phonology</strong> and the
